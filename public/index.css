@@ -1,0 +1,25 @@
+body{
+    background-color: #97EFBC;
+}
+#header{
+    background-color: white;
+    border: 3px solid #fff;
+    border-radius: 10%; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+@font-face {
+    font-family: 'uid_salmon_2019regular';
+    src: url('uid_salmon_2019_-webfont.woff2') format('woff2'),
+         url('uid_salmon_2019_-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+h2{
+    font-size: 50px;
+    text-align: center;
+    font-family: 'uid_salmon_2019regular';
+}
