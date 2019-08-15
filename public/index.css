@@ -19,7 +19,10 @@ body{
 
 }
 h2{
-    font-size: 50px;
+    font-size: 70px;
     text-align: center;
     font-family: 'uid_salmon_2019regular';
+}
+#content-center{
+    margin:auto;
 }
