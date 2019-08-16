@@ -13,13 +13,127 @@
   <br />
   <br />
   <div id="content-center" align="center">
-        <img src="/picture/teacher.png" height="400" width="400">
+        <img id ="teacher_act"src="/picture/teacher.png" height="400" width="400">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <img src="/picture/student.png" height="400" width="400">
+        <img id="student_act"src="/picture/student.png" height="400" width="400">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <img src="/picture/people.png" height="400" width="400">
+        <img id="people_act"src="/picture/people.png" height="400" width="400">
   </div>
+
   
 </body>
 
+<!------------------------------------------------------------------------------------------>
+<div id ="teacher_Modal" class = "modal">
+  <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h3>ลงทะเบียน-คุณครู</h3>
+      </div>
+      <div class="modal-body">
+          <form>
+              <div id="form-register">
+                  <br/>
+                  ชื่อ : <input type="text" name="firstname" id="tname"required >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  นามสกุล : <input type="text" name="lastname" id="tlastname"required >
+                  <br/><br/>
+                  เพศ : <input type="radio" name="gender" value="male" style="font-size: 30px"> ชาย &nbsp;&nbsp;
+                  <input type="radio" name="gender" value="female" style="font-size: 30px"> หญิง<br><br/>
+                  สถานศึกษา : <input type="text" name="school" id="tschool"required ><br/><br/>
+                  จำนวนนักเรียนที่พามา : <input type="text" name="student_number" id="tnumber" required ><br/>
+                  <br/><br/>
+                  <input type="button" value="Submit" class="button-regis" id="teacher_button"><br/><br/>
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <br/><br/>
+        <div id="qrcode1"></div>
+      </div>
+    </div>
+</div>
+<!-------------------------------------------------------------------------------------------------->
+<div id ="student_Modal" class = "modal">
+    <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h3>ลงทะเบียน-นักเรียน/นักศึกษา</h3>
+        </div>
+        <div class="modal-body">
+            <form  >
+                <div id="form-register">
+                    <br/>
+                    ชื่อ : <input type="text" name="firstname" id="sname"required >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    นามสกุล : <input type="text" name="lastname" id="slastname" required>
+                    <br/><br/>
+                    เพศ : <input type="radio" name="gender" value="male" style="font-size: 30px"> ชาย &nbsp;&nbsp;
+                    <input type="radio" name="gender" value="female" style="font-size: 30px"> หญิง<br><br/>
+                    สถานศึกษา : <input type="text" name="school" required id="sschool"><br/><br/>
+                    ระดับการศึกษา : <select name="grade" form="regis-form" required>
+                        <option value="grad1">อนุบาล 1</option>
+                        <option value="grad2">อนุบาล 2</option>
+                        <option value="grad3">อนุบาล 3</option>
+                        <option value="grad4">ประถมศึกษาปีที่ 1</option>
+                        <option value="grad5">ประถมศึกษาปีที่ 2</option>
+                        <option value="grad6">ประถมศึกษาปีที่ 3</option>
+                        <option value="grad7">ประถมศึกษาปีที่ 4</option>
+                        <option value="grad8">ประถมศึกษาปีที่ 5</option>
+                        <option value="grad9">ประถมศึกษาปีที่ 6</option>
+                        <option value="grad10">มัธยทศึกษาปีที่ 1</option>
+                        <option value="grad11">มัธยทศึกษาปีที่ 2</option>
+                        <option value="grad12">มัธยทศึกษาปีที่ 3</option>
+                        <option value="grad13">มัธยทศึกษาปีที่ 4</option>
+                        <option value="grad14">มัธยทศึกษาปีที่ 5</option>
+                        <option value="grad15">มัธยทศึกษาปีที่ 6</option>
+                        <option value="grad16">ปริญญาตรี</option>
+                        <option value="grad17">ปริญญาโท</option>
+                        <option value="grad18">ปริญญาเอก</option>
+                      </select>
+                    <br/><br/>
+                    <input type="button" id="student_button"value="Submit" class="button-regis"><br/><br/>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <br/><br/>
+            <div id="qrcode2"></div>
+        </div>
+      </div>
+</div>
+<!-------------------------------------------------------------------------------------------------->
+<div id ="people_Modal" class = "modal">
+    <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h3>ลงทะเบียน-บุคคลทั่วไป</h3>
+        </div>
+        <div class="modal-body">
+            <form >
+                <div id="form-register">
+                    <br/>
+                    ชื่อ : <input type="text" name="firstname" required id="pname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    นามสกุล : <input type="text" name="lastname" required id="plastname">
+                    <br/><br/>
+                    เพศ : <input type="radio" name="gender" value="male" style="font-size: 30px"> ชาย &nbsp;&nbsp;
+                    <input type="radio" name="gender" value="female" style="font-size: 30px"> หญิง<br><br/>
+                    สถานศึกษา : <input type="text" name="school" id="pschool"required ><br/><br/>
+                    อายุ : <input type="text" name="age" required id="page"><br/>
+                    <br/><br/>
+                    <input type="button" id="people_button"value="Submit" class="button-regis" required><br/><br/>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <br/><br/>
+            <div id="qrcode3"></div>
+        </div>
+      </div>
+</div>
+<!-------------------------------------------------------------------------------------------------->
+
+
+
+<script type="text/javascript" src="modals.js"></script>
+<script type="text/javascript" src="action.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
 </html>
