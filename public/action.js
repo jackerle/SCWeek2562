@@ -2,7 +2,7 @@ var teacher_button = document.getElementById("teacher_button")
 var student_button = document.getElementById("student_button")
 var people_button = document.getElementById("people_button")
 teacher_button.onclick = function(){
-    if(document.getElementById("tname").value ===null||document.getElementById("tlastname")===null){
+    if(document.getElementById("tname").value ===""||document.getElementById("tlastname")===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
@@ -21,7 +21,7 @@ teacher_button.onclick = function(){
     }
 }
 student_button.onclick = function(){
-    if(document.getElementById("sname").value ===null||document.getElementById("slastname")===null){
+    if(document.getElementById("sname").value ===""||document.getElementById("slastname")===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
@@ -39,13 +39,12 @@ student_button.onclick = function(){
     }
 }
 people_button.onclick = function(){
-    if(document.getElementById("pname").value ===null||document.getElementById("plastname")===null){
+    if(document.getElementById("pname").value ===""||document.getElementById("plastname")===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
         document.getElementById("pname").disabled = true
         document.getElementById("plastname").disabled = true
-        document.getElementById("pschool").disabled = true
         document.getElementById("page").disabled = true
         let qrcode = new QRCode("qrcode3",{
             text: "testja",
