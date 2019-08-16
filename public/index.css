@@ -114,7 +114,9 @@ h2{
   .modal-footer {
     padding: 2px 16px;
     background-color: rgb(106, 238, 161);
-    color: white;}
+    color: white;
+    height: 85px;
+  }
 
     .button-regis {
         background-color: rgb(106, 238, 161);
@@ -139,4 +141,5 @@ h2{
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
+        float: left;
       }

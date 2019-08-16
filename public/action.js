@@ -4,6 +4,9 @@ var people_button = document.getElementById("people_button")
 var tdone = document.getElementById("teacher-done")
 var sdone = document.getElementById("student-done")
 var pdone = document.getElementById("people-done")
+var p1 = document.getElementById("print1")
+var p2 = document.getElementById("print2")
+var p3=  document.getElementById("print3")
 teacher_button.onclick = function(){
     if(document.getElementById("tname").value ===""||document.getElementById("tlastname")===""||document.getElementById("tschool")===""||document.getElementById("tnumber")===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
@@ -15,6 +18,7 @@ teacher_button.onclick = function(){
         document.getElementById("tnumber").disabled = true;
         teacher_button.disabled = true;
         tdone.disabled = false;
+        p1.disabled = false
         let qrcode = new QRCode("qrcode1",{
             text: "testja",
             width: 256,
@@ -40,6 +44,7 @@ student_button.onclick = function(){
         document.getElementById("sselect").disabled = true
         student_button.disabled = true
         sdone.disabled = false
+        p2.disabled = false
         let qrcode = new QRCode("qrcode2",{
             text: "testja",
             width: 256,
@@ -63,6 +68,7 @@ people_button.onclick = function(){
         document.getElementById("page").disabled = true
         people_button.disabled = true;
         pdone.disabled = false
+        p3.disabled = false
         let qrcode = new QRCode("qrcode3",{
             text: "testja",
             width: 256,
@@ -75,4 +81,14 @@ people_button.onclick = function(){
 }
 pdone.onclick = function(){
     location.reload();
+}
+
+p1.onclick = function(){
+    //printqr
+}
+p2.onclick = function(){
+    //printqr
+}
+p3.onclick = function(){
+    //printqr
 }
