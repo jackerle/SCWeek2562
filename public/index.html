@@ -38,9 +38,10 @@
         <span class="close">&times;</span>
         <h3>ลงทะเบียน-คุณครู</h3>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="height: 320px">
+          <br/>
           <form>
-              <div id="form-register">
+              <div class="form-register" >
                   <br/>
                   ชื่อ : <input type="text" name="firstname" id="tname"required ><br/><br/>
                   นามสกุล : <input type="text" name="lastname" id="tlastname"required >
@@ -53,10 +54,11 @@
                   <input type="button" value="Submit" class="button-regis" id="teacher_button"><br/><br/>
               </div>
           </form>
+          <div id="qrcode1" class="qrcode"></div>
       </div>
       <div class="modal-footer">
-        <br/><br/>
-        <div id="qrcode1"></div>
+        <br/>
+        <input type="button" value="Done" class="button-regis-done" id="teacher-done"disabled><br/><br/>
       </div>
     </div>
 </div>
@@ -67,9 +69,10 @@
           <span class="close">&times;</span>
           <h3>ลงทะเบียน-นักเรียน/นักศึกษา</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="height: 300px;">
+          <br/>
             <form  >
-                <div id="form-register">
+                <div class="form-register">
                     <br/>
                     ชื่อ : <input type="text" name="firstname" id="sname"required ><br/><br/>
                     นามสกุล : <input type="text" name="lastname" id="slastname" required>
@@ -77,7 +80,7 @@
                     เพศ : <input type="radio" name="gender" value="male" style="font-size: 30px"> ชาย &nbsp;&nbsp;
                     <input type="radio" name="gender" value="female" style="font-size: 30px"> หญิง<br><br/>
                     สถานศึกษา : <input type="text" name="school" required id="sschool"><br/><br/>
-                    ระดับการศึกษา : <select name="grade" form="regis-form" required>
+                    ระดับการศึกษา : <select name="grade" form="regis-form" id= "sselect"required>
                         <option value="grad1">อนุบาล 1</option>
                         <option value="grad2">อนุบาล 2</option>
                         <option value="grad3">อนุบาล 3</option>
@@ -87,12 +90,12 @@
                         <option value="grad7">ประถมศึกษาปีที่ 4</option>
                         <option value="grad8">ประถมศึกษาปีที่ 5</option>
                         <option value="grad9">ประถมศึกษาปีที่ 6</option>
-                        <option value="grad10">มัธยทศึกษาปีที่ 1</option>
-                        <option value="grad11">มัธยทศึกษาปีที่ 2</option>
-                        <option value="grad12">มัธยทศึกษาปีที่ 3</option>
-                        <option value="grad13">มัธยทศึกษาปีที่ 4</option>
-                        <option value="grad14">มัธยทศึกษาปีที่ 5</option>
-                        <option value="grad15">มัธยทศึกษาปีที่ 6</option>
+                        <option value="grad10">มัธยมศึกษาปีที่ 1</option>
+                        <option value="grad11">มัธยมศึกษาปีที่ 2</option>
+                        <option value="grad12">มัธยมศึกษาปีที่ 3</option>
+                        <option value="grad13">มัธยมศึกษาปีที่ 4</option>
+                        <option value="grad14">มัธยมศึกษาปีที่ 5</option>
+                        <option value="grad15">มัธยมศึกษาปีที่ 6</option>
                         <option value="grad16">ปริญญาตรี</option>
                         <option value="grad17">ปริญญาโท</option>
                         <option value="grad18">ปริญญาเอก</option>
@@ -100,11 +103,13 @@
                     <br/><br/>
                     <input type="button" id="student_button"value="Submit" class="button-regis"><br/><br/>
                 </div>
+                <div id="qrcode2" class="qrcode"></div>
             </form>
         </div>
         <div class="modal-footer">
-            <br/><br/>
-            <div id="qrcode2"></div>
+            <br/>
+            <input type="button" value="Done" class="button-regis-done" id="student-done"disabled><br/><br/>
+           
         </div>
       </div>
 </div>
@@ -115,9 +120,10 @@
           <span class="close">&times;</span>
           <h3>ลงทะเบียน-บุคคลทั่วไป</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="height: 300px;">
+          <br/>
             <form >
-                <div id="form-register">
+                <div class="form-register">
                     <br/>
                     ชื่อ : <input type="text" name="firstname" required id="pname"><br/><br/>
                     นามสกุล : <input type="text" name="lastname" required id="plastname">
@@ -128,11 +134,13 @@
                     <br/><br/>
                     <input type="button" id="people_button"value="Submit" class="button-regis" required><br/><br/>
                 </div>
+                <div id="qrcode3" class="qrcode"></div>
             </form>
         </div>
         <div class="modal-footer">
-            <br/><br/>
-            <div id="qrcode3"></div>
+            <br/>
+            <input type="button" value="Done" class="button-regis-done" id="people-done"disabled><br/><br/>
+            
         </div>
       </div>
 </div>
