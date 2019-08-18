@@ -7,20 +7,35 @@ var pdone = document.getElementById("people-done")
 var p1 = document.getElementById("print1")
 var p2 = document.getElementById("print2")
 var p3=  document.getElementById("print3")
-teacher_button.onclick = function(){
+teacher_button.onclick = async function(){
+        let tname = document.getElementById("tname")
+        console.log(typeof(tname.value))
+        let tlastname = document.getElementById("tlastname")
+        let tschool = document.getElementById("tschool")
+        let tnumber = document.getElementById("tnumber")
+    let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/teacher_api",{
+        method:'POST',
+        cache:'no-cache',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        referrer: 'no-referrer', // no-referrer, *client
+        body:'name='+tname.value+'&lastname='+tlastname.value+'&gender=male&school='+tschool.value+'&student_n=10',
+    }).then(res => res.json())
+    console.log(obj.id)
     if(document.getElementById("tname").value ===""||document.getElementById("tlastname")===""||document.getElementById("tschool")===""||document.getElementById("tnumber")===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
-        document.getElementById("tname").disabled = true;
-        document.getElementById("tlastname").disabled = true;
-        document.getElementById("tschool").disabled = true;
-        document.getElementById("tnumber").disabled = true;
+        tname.disabled = true;
+        tlastname.disabled = true;
+        tschool.disabled = true;
+        tnumber.disabled = true;
         teacher_button.disabled = true;
         tdone.disabled = false;
         p1.disabled = false
         let qrcode = new QRCode("qrcode1",{
-            text: "testja",
+            text: String(obj.id),
             width: 256,
             height: 256,
             colorDark: "#990000",

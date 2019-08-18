@@ -53,7 +53,7 @@ app.post('/teacher_api',(req,res)=>{
   n.once("value",function(snapshot){
     let o_count= JSON.stringify(snapshot.val())
     let count = parseInt(o_count)+1
-    let ref = db.ref("test/"+count)
+    let ref = db.ref("test/teacher/"+count)
     let obj = {
       id:count,
       name:na+" "+lastna,
@@ -66,6 +66,53 @@ app.post('/teacher_api',(req,res)=>{
     res.send(JSON.stringify(obj))
   })
 })
+
+app.post('/student_api',(req,res)=>{
+  var n = db.ref("count")
+  var na = String(req.body.name)
+  var lastna = String(req.body.lastname)
+  var gen = String(req.body.gender)
+  var sch = String(req.body.school)
+  var std_g = String(req.body.student_grade)
+  n.once("value",function(snapshot){
+    let o_count= JSON.stringify(snapshot.val())
+    let count = parseInt(o_count)+1
+    let ref = db.ref("test/student/"+count)
+    let obj = {
+      id:count,
+      name:na+" "+lastna,
+      gender:gen,
+      school:sch,
+      student_grade:std_g
+    }
+    ref.set(obj)
+    n.set(count)
+    res.send(JSON.stringify(obj))
+  })
+})
+
+app.post('/people_api',(req,res)=>{
+  var n = db.ref("count")
+  var na = String(req.body.name)
+  var lastna = String(req.body.lastname)
+  var gen = String(req.body.gender)
+  var a = String(req.body.age)
+  n.once("value",function(snapshot){
+    let o_count= JSON.stringify(snapshot.val())
+    let count = parseInt(o_count)+1
+    let ref = db.ref("test/people/"+count)
+    let obj = {
+      id:count,
+      name:na+" "+lastna,
+      gender:gen,
+      age:a
+    }
+    ref.set(obj)
+    n.set(count)
+    res.send(JSON.stringify(obj))
+  })
+})
+
 
 // Expose Express API as a single Cloud Function:
 exports.api = functions.https.onRequest(app);
