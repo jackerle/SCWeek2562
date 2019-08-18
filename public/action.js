@@ -13,6 +13,9 @@ teacher_button.onclick = async function(){
         let tlastname = document.getElementById("tlastname")
         let tschool = document.getElementById("tschool")
         let tnumber = document.getElementById("tnumber")
+        let tgender
+        if(document.getElementById('tmale').checked==true)tgender='male'
+        else tgender = 'female'
     let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/teacher_api",{
         method:'POST',
         cache:'no-cache',
@@ -20,7 +23,7 @@ teacher_button.onclick = async function(){
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         referrer: 'no-referrer', // no-referrer, *client
-        body:'name='+tname.value+'&lastname='+tlastname.value+'&gender=male&school='+tschool.value+'&student_n=10',
+        body:'name='+tname.value+'&lastname='+tlastname.value+'&gender='+tgender+'&school='+tschool.value+'&student_n='+tnumber.value,
     }).then(res => res.json())
     console.log(obj.id)
     if(document.getElementById("tname").value ===""||document.getElementById("tlastname")===""||document.getElementById("tschool")===""||document.getElementById("tnumber")===""){
@@ -48,7 +51,24 @@ teacher_button.onclick = async function(){
 tdone.onclick = function(){
     location.reload();
 }
-student_button.onclick = function(){
+student_button.onclick = async function(){
+    let sname = document.getElementById('sname')
+    let slastname = document.getElementById('slastname')
+    let sschool = document.getElementById('sschool')
+    let sselect = document.getElementById('sselect')
+    let sgender
+        if(document.getElementById('smale').checked==true)sgender='male'
+        else sgender = 'female'
+        let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/student_api",{
+        method:'POST',
+        cache:'no-cache',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        referrer: 'no-referrer', // no-referrer, *client
+        body:'name='+sname.value+'&lastname='+slastname.value+'&gender='+sgender+'&school='+sschool.value+'&student_grade='+sselect.value,
+    }).then(res => res.json())
+    console.log(obj.id)
     if(document.getElementById("sname").value ===""||document.getElementById("slastname")===""||document.getElementById("sschool")===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
@@ -61,7 +81,7 @@ student_button.onclick = function(){
         sdone.disabled = false
         p2.disabled = false
         let qrcode = new QRCode("qrcode2",{
-            text: "testja",
+            text: String(obj.id),
             width: 256,
             height: 256,
             colorDark: "#990000",
