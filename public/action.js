@@ -88,6 +88,7 @@ student_button.onclick = async function(){
             colorLight: "#ffffff",
             correctLevel : QRCode.CorrectLevel.H
         })
+        setID(String(obj.id))
     }
 }
 sdone.onclick = function(){
@@ -112,6 +113,7 @@ people_button.onclick = function(){
             colorLight: "#ffffff",
             correctLevel : QRCode.CorrectLevel.H
         })
+        setID(String(obj.id))
     }
 }
 pdone.onclick = function(){
@@ -124,11 +126,11 @@ p1.onclick = function(){
 }
 p2.onclick = function(){
     //printqr
-    window.print()
+    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
 }
 p3.onclick = function(){
     //printqr
-    window.print()
+    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
 }
 function setID(id){
     let tagname = document.getElementsByTagName('forID')[0]

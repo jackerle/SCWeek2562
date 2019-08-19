@@ -38,6 +38,12 @@ app.get('/getTeacher',(req,res)=>{
   })
 })
 
+app.get('/getRoom',(req,res)=>{
+  let ref = db.ref("checkin")
+  ref.once("value",function (snapshot){
+    res.send(JSON.stringify(snapshot.val()))
+  })
+})
 
 
 
@@ -110,6 +116,16 @@ app.post('/teacher_api',(req,res)=>{
   })
 })
 
+
+
+
+
+
+
+
+
+
+
 app.post('/student_api',(req,res)=>{
   var n = db.ref("count")
   var na = String(req.body.name)
@@ -155,6 +171,40 @@ app.post('/people_api',(req,res)=>{
     res.send(JSON.stringify(obj))
   })
 })
+
+
+
+
+
+app.post('/checkin/1',(req,res)=>{
+  let id = String(req.body.id)
+  ref = db.ref("checkin/room1/"+id)
+  ref.set({
+    status:"ok"
+  })
+  res.send(200)
+})
+app.post('/checkin/2',(req,res)=>{
+  let id = String(req.body.id)
+  ref = db.ref("checkin/room2/"+id)
+  ref.set({
+    status:"ok"
+  })
+  res.send(200)
+})
+
+app.post('/checkin/3',(req,res)=>{
+  let id = String(req.body.id)
+  ref = db.ref("checkin/room3/"+id)
+  ref.set({
+    status:"ok"
+  })
+  res.send(200)
+})
+
+
+
+
 
 
 // Expose Express API as a single Cloud Function:
