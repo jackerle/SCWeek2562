@@ -94,7 +94,22 @@ student_button.onclick = async function(){
 sdone.onclick = function(){
     location.reload();
 }
-people_button.onclick = function(){
+people_button.onclick = async function(){
+    let pname = document.getElementById('pname')
+    let plastname = document.getElementById('plastname')
+    let page = document.getElementById('page')
+    let pgender
+    if(document.getElementById('pmale').checked==true)sgender='male'
+    else sgender = 'female'
+    let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/people_api",{
+        method:'POST',
+        cache:'no-cache',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        referrer: 'no-referrer', // no-referrer, *client
+        body:'name='+sname.value+'&lastname='+slastname.value+'&gender='+sgender+'&age='+page.value,
+    }).then(res => res.json())
     if(document.getElementById("pname").value ===""||document.getElementById("plastname").value===""||document.getElementById("page").value===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
@@ -106,7 +121,7 @@ people_button.onclick = function(){
         pdone.disabled = false
         p3.disabled = false
         let qrcode = new QRCode("qrcode3",{
-            text: "testja",
+            text: String(obj.id),
             width: 256,
             height: 256,
             colorDark: "#990000",
@@ -123,14 +138,17 @@ pdone.onclick = function(){
 p1.onclick = function(){
     //printqr
     window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
+    location.reload()
 }
 p2.onclick = function(){
     //printqr
     window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
+    location.reload()
 }
 p3.onclick = function(){
     //printqr
     window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
+    location.reload()
 }
 function setID(id){
     let tagname = document.getElementsByTagName('forID')[0]
