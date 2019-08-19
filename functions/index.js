@@ -79,6 +79,7 @@ app.get('/printqr/:id',(req,res)=>{
          correctLevel : QRCode.CorrectLevel.H
      })
      window.print()
+     window.close()
     }
  </script>
   
