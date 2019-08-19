@@ -12,6 +12,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
+
 admin.initializeApp(functions.config().firebase);
 // Get a database reference to our posts
 var db = admin.database();
@@ -24,11 +25,21 @@ app.get('/modals', (req, res) => {
 });
 
 app.get('/getList',(req,res)=>{
-  var ref = db.ref("test")
+  let ref = db.ref("test")
   ref.once("value",function(snapshot){
     res.send(JSON.stringify(snapshot.val()))
   })
 })
+
+app.get('/getTeacher',(req,res)=>{
+  let ref = db.ref("test/teacher")
+  ref.once("value",function (snapshot){
+    res.send(JSON.stringify(snapshot.val()))
+  })
+})
+
+
+
 
 app.get('/sendDat',(req,res)=>{
   var n = db.ref("count")
@@ -41,6 +52,37 @@ app.get('/sendDat',(req,res)=>{
   ref.set({
     id:"hello"
   })*/
+})
+
+
+app.get('/printqr/:id',(req,res)=>{
+  res.send(`<!DOCTYPE html>
+  <head>
+     
+      <title>printQR</title>
+  </head>
+  <body onload="initial()">
+      <div id="qrcode">
+  
+      </div>
+      <p>ID:${String(req.params.id)}</p>
+  </body >
+  <script type="text/javascript" src="https://scweek62-7febd.firebaseapp.com/qrcode.js"></script>
+  <script>
+  function initial(){
+  let qrcode = new QRCode("qrcode",{
+         text: "${String(req.params.id)}",
+         width: 256,
+         height: 256,
+         colorDark: "#990000",
+         colorLight: "#ffffff",
+         correctLevel : QRCode.CorrectLevel.H
+     })
+     window.print()
+    }
+ </script>
+  
+  </html>`)
 })
 
 app.post('/teacher_api',(req,res)=>{

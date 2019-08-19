@@ -26,7 +26,7 @@ teacher_button.onclick = async function(){
         body:'name='+tname.value+'&lastname='+tlastname.value+'&gender='+tgender+'&school='+tschool.value+'&student_n='+tnumber.value,
     }).then(res => res.json())
     console.log(obj.id)
-    if(document.getElementById("tname").value ===""||document.getElementById("tlastname")===""||document.getElementById("tschool")===""||document.getElementById("tnumber")===""){
+    if(document.getElementById("tname").value ===""||document.getElementById("tlastname").value===""||document.getElementById("tschool").value===""||document.getElementById("tnumber").value===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
@@ -45,7 +45,7 @@ teacher_button.onclick = async function(){
             colorLight: "#ffffff",
             correctLevel : QRCode.CorrectLevel.H
         })
-
+        setID(String(obj.id))
     }
 }
 tdone.onclick = function(){
@@ -69,7 +69,7 @@ student_button.onclick = async function(){
         body:'name='+sname.value+'&lastname='+slastname.value+'&gender='+sgender+'&school='+sschool.value+'&student_grade='+sselect.value,
     }).then(res => res.json())
     console.log(obj.id)
-    if(document.getElementById("sname").value ===""||document.getElementById("slastname")===""||document.getElementById("sschool")===""){
+    if(document.getElementById("sname").value ===""||document.getElementById("slastname").value===""||document.getElementById("sschool").value===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
@@ -94,7 +94,7 @@ sdone.onclick = function(){
     location.reload();
 }
 people_button.onclick = function(){
-    if(document.getElementById("pname").value ===""||document.getElementById("plastname")===""||document.getElementById("page")===""){
+    if(document.getElementById("pname").value ===""||document.getElementById("plastname").value===""||document.getElementById("page").value===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
     else{
@@ -120,10 +120,19 @@ pdone.onclick = function(){
 
 p1.onclick = function(){
     //printqr
+    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
 }
 p2.onclick = function(){
     //printqr
+    window.print()
 }
 p3.onclick = function(){
     //printqr
+    window.print()
+}
+function setID(id){
+    let tagname = document.getElementsByTagName('forID')[0]
+    let att = document.createAttribute('id')
+    att.value = String(id)
+    tagname.setAttributeNode(att)
 }
