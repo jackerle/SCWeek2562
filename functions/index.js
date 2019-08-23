@@ -68,18 +68,20 @@ app.get('/printqr/:id',(req,res)=>{
       <title>printQR</title>
   </head>
   <body onload="initial()">
+  &nbsp;&nbsp;
       <div id="qrcode">
   
       </div>
-      <p>ID:${String(req.params.id)}</p>
+      <p style="font-size:10px">ID:${String(req.params.id)}</p>
+      <p style="font-size:10px">Name:${String(req.query.name)}</p>
   </body >
   <script type="text/javascript" src="https://scweek62-7febd.firebaseapp.com/qrcode.js"></script>
   <script>
   function initial(){
   let qrcode = new QRCode("qrcode",{
          text: "${String(req.params.id)}",
-         width: 256,
-         height: 256,
+         width: 150,
+         height: 150,
          colorDark: "#990000",
          colorLight: "#ffffff",
          correctLevel : QRCode.CorrectLevel.H

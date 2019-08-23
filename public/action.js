@@ -7,6 +7,7 @@ var pdone = document.getElementById("people-done")
 var p1 = document.getElementById("print1")
 var p2 = document.getElementById("print2")
 var p3=  document.getElementById("print3")
+var send_name
 teacher_button.onclick = async function(){
         let tname = document.getElementById("tname")
         console.log(typeof(tname.value))
@@ -16,6 +17,7 @@ teacher_button.onclick = async function(){
         let tgender
         if(document.getElementById('tmale').checked==true)tgender='male'
         else tgender = 'female'
+        send_name = String(tname.value)+" "+String(tlastname.value)
     let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/teacher_api",{
         method:'POST',
         cache:'no-cache',
@@ -59,6 +61,7 @@ student_button.onclick = async function(){
     let sgender
         if(document.getElementById('smale').checked==true)sgender='male'
         else sgender = 'female'
+        send_name = String(tname.value)+" "+String(tlastname.value)
         let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/student_api",{
         method:'POST',
         cache:'no-cache',
@@ -101,6 +104,7 @@ people_button.onclick = async function(){
     let pgender
     if(document.getElementById('pmale').checked==true)sgender='male'
     else sgender = 'female'
+    send_name = String(tname.value)+" "+String(tlastname.value)
     let obj = await fetch("https://us-central1-scweek62-7febd.cloudfunctions.net/api/people_api",{
         method:'POST',
         cache:'no-cache',
@@ -137,17 +141,17 @@ pdone.onclick = function(){
 
 p1.onclick = function(){
     //printqr
-    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
+    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id)+"?name="+String(send_name))
     location.reload()
 }
 p2.onclick = function(){
     //printqr
-    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
+    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id)+"?name="+String(send_name))
     location.reload()
 }
 p3.onclick = function(){
     //printqr
-    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id))
+    window.open('http://us-central1-scweek62-7febd.cloudfunctions.net/api/printqr/'+String(document.getElementsByTagName('forID')[0].id)+"?name="+String(send_name))
     location.reload()
 }
 function setID(id){
