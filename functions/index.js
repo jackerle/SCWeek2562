@@ -68,12 +68,13 @@ app.get('/printqr/:id',(req,res)=>{
       <title>printQR</title>
   </head>
   <body onload="initial()">
-  &nbsp;&nbsp;
       <div id="qrcode">
   
       </div>
-      <p style="font-size:10px">ID:${String(req.params.id)}</p>
-      <p style="font-size:10px">Name:${String(req.query.name)}</p>
+      <p style="font-size:14px">ID:${String(req.params.id)}</p>
+      <p style="font-size:14px">ชื่อ:${String(req.query.name)}</p>
+      <p style="font-size:14px">นามสกุล:${String(req.query.lname)}</p>
+      
   </body >
   <script type="text/javascript" src="https://scweek62-7febd.firebaseapp.com/qrcode.js"></script>
   <script>
