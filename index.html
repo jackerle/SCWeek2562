@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<head>
+    <title>dashboasrd Room</title>
+    <style>
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+        body {font-family: Arial;}
+        
+        /* Style the tab */
+        .tab {
+          overflow: hidden;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+        }
+        
+        /* Style the buttons inside the tab */
+        .tab button {
+          background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+          font-size: 17px;
+        }
+        
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+          background-color: #ddd;
+        }
+        
+        /* Create an active/current tablink class */
+        .tab button.active {
+          background-color: #ccc;
+        }
+        
+        /* Style the tab content */
+        .tabcontent {
+          display: none;
+          padding: 6px 12px;
+          border: 1px solid #ccc;
+          border-top: none;
+        }
+        </style>
+        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+       
+</head>
+<body onload="load_init()">
+    <h2 style="text-align: center">รายชื่อคนเเข้าร่วมงานสัปดาห์วิทยาศาสตร์</h2>
+    <h2 style="text-align: center">ปีการศึกษา 2562</h2>
+<div class="tab">
+  <button class="tablinks" onclick="open_content(event, 'room1')">ห้อง 1</button>
+  <button class="tablinks" onclick="open_content(event, 'room2')">ห้อง 2</button>
+  <button class="tablinks" onclick="open_content(event, 'room3')">ห้อง 3</button>
+  <button class="tablinks" onclick="open_content(event, 'room4')">ห้อง 4</button>
+  <button class="tablinks" onclick="open_content(event, 'room_all')">รวม</button>
+</div>
+<div id="room1" class="tabcontent">
+    <h3>ผู้เข้างานห้อง IOT</h3>
+    <div id ="room1_content"></div>
+  </div>
+  
+  <div id="room2" class="tabcontent">
+    <h3>หผู้เข้างานห้อง App&Game</h3>
+    <div id ="room2_content"></div>
+  </div>
+  
+  <div id="room3" class="tabcontent">
+    <h3>หผู้เข้างานห้อง Robot</h3>
+    <div id ="room3_content"></div>
+  </div>
+  <div id="room4" class="tabcontent">
+    <h3>ผู้เข้างานห้อง Data Science</h3>
+    <div id ="room4_content"></div>
+  </div>
+  <div id="room_all" class="tabcontent">
+      <h3>ผู้เข้างานทั้งหมด</h3>
+      <div id ="rooma_content"></div>
+  </div>
+  <script>
+     var config  = {
+                apiKey: "AIzaSyBQKv7XXX43RWbWBid1a222n4gZqph3CWU",
+			    databaseURL: "https://scweek62-7febd.firebaseio.com/",
+			    projectId: "scweek62-7febd",
+			    messagingSenderId: "431408313965"
+            }
+            const db = firebase.initializeApp(config).database();
+            const key = db.ref('test')
+		    key.once('value', (snapshot) => {
+			console.log(snapshot ? snapshot.val() : "null!")
+		})
+  function open_content(evt, room_num) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(room_num).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  function load1(){
+    var str = `<table>
+        <tr>
+            <th>หมายเลข</th>
+            <th>ชื่อ</th>
+            <th>เพศ</th>
+            <th>อายุ</th>
+            <th>สถานศึกษา</th>
+            <th>อาชีพ</th>
+            <th>จำนวนคนที่พามา</th>
+            <th>ระดับการศึกษา</th>
+        </tr>
+        </table>
+        `
+        const room1 = db.ref('checkin/room1')
+        room1.once('value',(snapshot)=>{
+            let room_data = snapshot.val()
+           for(i in room_data){
+              let index = parseInt(i)
+              console.log(index)
+             key.once('value', (sn) => {
+               if(sn.val().teacher[index]!=undefined){
+                let person = sn.val().teacher[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>คุณครู</th>
+                <td>${person.student_number}</th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().student[index]!=undefined){
+                let person = sn.val().student[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>นักเรียน</th>
+                <td> - </th>
+                <td>${person.student_grade}</th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().people[index]!=undefined){
+                console.log(sn.val().people[index])
+                let person = sn.val().people[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td>${person.age}</th>
+                <td> - </th>
+                <td>บุคคลทั่วไป</th>
+                <td> - </th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+		})
+           }
+        })
+        setInterval(()=>{
+          document.getElementById('room1_content').innerHTML = str
+        },3000)
+        
+        
+  }
+  function load2(){
+    
+    var str = `<table>
+        <tr>
+            <th>หมายเลข</th>
+            <th>ชื่อ</th>
+            <th>เพศ</th>
+            <th>อายุ</th>
+            <th>สถานศึกษา</th>
+            <th>อาชีพ</th>
+            <th>จำนวนคนที่พามา</th>
+            <th>ระดับการศึกษา</th>
+        </tr>
+        </table>
+        `
+        const room1 = db.ref('checkin/room2')
+        room1.once('value',(snapshot)=>{
+            let room_data = snapshot.val()
+           for(i in room_data){
+              let index = parseInt(i)
+              console.log(index)
+             key.once('value', (sn) => {
+               if(sn.val().teacher[index]!=undefined){
+                let person = sn.val().teacher[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>คุณครู</th>
+                <td>${person.student_number}</th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().student[index]!=undefined){
+                let person = sn.val().student[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>นักเรียน</th>
+                <td> - </th>
+                <td>${person.student_grade}</th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().people[index]!=undefined){
+                console.log(sn.val().people[index])
+                let person = sn.val().people[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td>${person.age}</th>
+                <td> - </th>
+                <td>บุคคลทั่วไป</th>
+                <td> - </th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+		})
+           }
+        })
+        setInterval(()=>{
+          document.getElementById('room2_content').innerHTML = str
+        },3000)
+        
+
+  }
+  function load3(){
+
+    
+    var str = `<table>
+        <tr>
+            <th>หมายเลข</th>
+            <th>ชื่อ</th>
+            <th>เพศ</th>
+            <th>อายุ</th>
+            <th>สถานศึกษา</th>
+            <th>อาชีพ</th>
+            <th>จำนวนคนที่พามา</th>
+            <th>ระดับการศึกษา</th>
+        </tr>
+        </table>
+        `
+        const room1 = db.ref('checkin/room3')
+        room1.once('value',(snapshot)=>{
+            let room_data = snapshot.val()
+           for(i in room_data){
+              let index = parseInt(i)
+              console.log(index)
+             key.once('value', (sn) => {
+               if(sn.val().teacher[index]!=undefined){
+                let person = sn.val().teacher[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>คุณครู</th>
+                <td>${person.student_number}</th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().student[index]!=undefined){
+                let person = sn.val().student[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>นักเรียน</th>
+                <td> - </th>
+                <td>${person.student_grade}</th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().people[index]!=undefined){
+                console.log(sn.val().people[index])
+                let person = sn.val().people[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td>${person.age}</th>
+                <td> - </th>
+                <td>บุคคลทั่วไป</th>
+                <td> - </th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+		})
+           }
+        })
+        setInterval(()=>{
+          document.getElementById('room3_content').innerHTML = str
+        },3000)
+        
+
+
+  }
+  function laod4(){
+    
+    
+    var str = `<table>
+        <tr>
+            <th>หมายเลข</th>
+            <th>ชื่อ</th>
+            <th>เพศ</th>
+            <th>อายุ</th>
+            <th>สถานศึกษา</th>
+            <th>อาชีพ</th>
+            <th>จำนวนคนที่พามา</th>
+            <th>ระดับการศึกษา</th>
+        </tr>
+        </table>
+        `
+        const room1 = db.ref('checkin/room4')
+        room1.once('value',(snapshot)=>{
+            let room_data = snapshot.val()
+           for(i in room_data){
+              let index = parseInt(i)
+              console.log(index)
+             key.once('value', (sn) => {
+               if(sn.val().teacher[index]!=undefined){
+                let person = sn.val().teacher[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>คุณครู</th>
+                <td>${person.student_number}</th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().student[index]!=undefined){
+                let person = sn.val().student[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td> - </th>
+                <td>${person.school}</th>
+                <td>นักเรียน</th>
+                <td> - </th>
+                <td>${person.student_grade}</th>
+            </tr>
+            </table>`
+               }
+               else if(sn.val().people[index]!=undefined){
+                console.log(sn.val().people[index])
+                let person = sn.val().people[index]
+                console.log(person)
+                str = str.substring(0, str.lastIndexOf("</table>"));
+                str+=`<tr>
+                    <td>${person.id}</th>
+                <td>${person.name}</th>
+                <td>${person.gender}</th>
+                <td>${person.age}</th>
+                <td> - </th>
+                <td>บุคคลทั่วไป</th>
+                <td> - </th>
+                <td> - </th>
+            </tr>
+            </table>`
+               }
+		})
+           }
+        })
+        setInterval(()=>{
+          document.getElementById('room4_content').innerHTML = str
+        },3000)
+        
+
+
+  }
+  function loadall(){
+
+  }
+  function load_init(){
+    load1()
+    load2()
+    load3()
+    laod4()
+    loadall()
+  }
+ 
+  </script>
+
+</body>
+</html>

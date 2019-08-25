@@ -205,6 +205,19 @@ app.post('/checkin/3',(req,res)=>{
   res.send(200)
 })
 
+app.post('/checkin/4',(req,res)=>{
+  let id = String(req.body.id)
+  ref = db.ref("checkin/room4/"+id)
+  ref.set({
+    status:"ok"
+  })
+  res.send(200)
+})
+
+app.get('/dashboard',(req,res)=>{
+  res.send("test")
+})
+
 
 
 
