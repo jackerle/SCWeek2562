@@ -105,7 +105,7 @@ app.post('/teacher_api',(req,res)=>{
   n.once("value",function(snapshot){
     let o_count= JSON.stringify(snapshot.val())
     let count = parseInt(o_count)+1
-    let ref = db.ref("test/teacher/"+count)
+    let ref = db.ref("person/teacher/"+count)
     let obj = {
       id:count,
       name:na+" "+lastna,
@@ -139,7 +139,7 @@ app.post('/student_api',(req,res)=>{
   n.once("value",function(snapshot){
     let o_count= JSON.stringify(snapshot.val())
     let count = parseInt(o_count)+1
-    let ref = db.ref("test/student/"+count)
+    let ref = db.ref("person/student/"+count)
     let obj = {
       id:count,
       name:na+" "+lastna,
@@ -162,7 +162,7 @@ app.post('/people_api',(req,res)=>{
   n.once("value",function(snapshot){
     let o_count= JSON.stringify(snapshot.val())
     let count = parseInt(o_count)+1
-    let ref = db.ref("test/people/"+count)
+    let ref = db.ref("person/people/"+count)
     let obj = {
       id:count,
       name:na+" "+lastna,

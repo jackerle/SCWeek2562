@@ -100,7 +100,7 @@ tr:nth-child(even) {
 			    messagingSenderId: "431408313965"
             }
             const db = firebase.initializeApp(config).database();
-            const key = db.ref('test')
+            const key = db.ref('person')
 		    key.once('value', (snapshot) => {
 			console.log(snapshot ? snapshot.val() : "null!")
 		})

@@ -116,7 +116,7 @@ people_button.onclick = async function(){
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         referrer: 'no-referrer', // no-referrer, *client
-        body:'name='+sname.value+'&lastname='+slastname.value+'&gender='+sgender+'&age='+page.value,
+        body:'name='+pname.value+'&lastname='+plastname.value+'&gender='+pgender+'&age='+page.value,
     }).then(res => res.json())
     if(document.getElementById("pname").value ===""||document.getElementById("plastname").value===""||document.getElementById("page").value===""){
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
