@@ -191,7 +191,15 @@ tr:nth-child(even) {
            }
         })
         setInterval(()=>{
-          document.getElementById('room1_content').innerHTML = str
+          let c,str_
+          room1.once('value', (snapshot) => {
+			    let res = snapshot.val()
+          console.log(Object.keys(res).length)
+          c  = Object.keys(res).length
+           str_ = "<h4>ผู้เข้าร่วมห้องนี้:"+String(c)+"</h4>";
+           document.getElementById('room1_content').innerHTML =str_+ str;
+		      })
+          
         },3000)
         
         
@@ -271,7 +279,15 @@ tr:nth-child(even) {
            }
         })
         setInterval(()=>{
-          document.getElementById('room2_content').innerHTML = str
+          let c,str_
+          room1.once('value', (snapshot) => {
+			    let res = snapshot.val()
+          console.log(Object.keys(res).length)
+          c  = Object.keys(res).length
+          str_ = "<h4>ผู้เข้าร่วมห้องนี้:"+String(c)+"</h4>";
+          document.getElementById('room2_content').innerHTML = str_+ str
+		      })
+          
         },3000)
         
 
@@ -352,7 +368,15 @@ tr:nth-child(even) {
            }
         })
         setInterval(()=>{
-          document.getElementById('room3_content').innerHTML = str
+          let c,str_
+          room1.once('value', (snapshot) => {
+			    let res = snapshot.val()
+          console.log(Object.keys(res).length)
+          c  = Object.keys(res).length
+          str_ = "<h4>ผู้เข้าร่วมห้องนี้:"+String(c)+"</h4>";
+          document.getElementById('room3_content').innerHTML = str_+str
+		      })
+        
         },3000)
         
 
@@ -434,7 +458,15 @@ tr:nth-child(even) {
            }
         })
         setInterval(()=>{
-          document.getElementById('room4_content').innerHTML = str
+          let c,str_
+          room1.once('value', (snapshot) => {
+			    let res = snapshot.val()
+          console.log(Object.keys(res).length)
+          c  = Object.keys(res).length
+          str_ = "<h4>ผู้เข้าร่วมห้องนี้:"+String(c)+"</h4>";
+          document.getElementById('room4_content').innerHTML =str_+str
+		      })
+          
         },3000)
         
 

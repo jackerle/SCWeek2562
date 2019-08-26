@@ -180,36 +180,44 @@ app.post('/people_api',(req,res)=>{
 
 
 app.post('/checkin/1',(req,res)=>{
+  var d = new Date()
   let id = String(req.body.id)
   ref = db.ref("checkin/room1/"+id)
   ref.set({
-    status:"ok"
+    status:"ok",
+   timestamp:(d.getHours()+7)+"."+d.getMinutes()+" "+d.getUTCDate()+":"+(d.getMonth()+1)+":"+d.getFullYear()
   })
   res.send(200)
 })
 app.post('/checkin/2',(req,res)=>{
+  var d = new Date()
   let id = String(req.body.id)
   ref = db.ref("checkin/room2/"+id)
   ref.set({
-    status:"ok"
+    status:"ok",
+    timestamp:(d.getHours()+7)+"."+d.getMinutes()+" "+d.getUTCDate()+":"+(d.getMonth()+1)+":"+d.getFullYear()
   })
   res.send(200)
 })
 
 app.post('/checkin/3',(req,res)=>{
+  var d = new Date()
   let id = String(req.body.id)
   ref = db.ref("checkin/room3/"+id)
   ref.set({
-    status:"ok"
+    status:"ok",
+   timestamp:(d.getHours()+7)+"."+d.getMinutes()+" "+d.getUTCDate()+":"+(d.getMonth()+1)+":"+d.getFullYear()
   })
   res.send(200)
 })
 
 app.post('/checkin/4',(req,res)=>{
+  var d = new Date()
   let id = String(req.body.id)
   ref = db.ref("checkin/room4/"+id)
   ref.set({
-    status:"ok"
+    status:"ok",
+    timestamp:(d.getHours()+7)+"."+d.getMinutes()+" "+d.getUTCDate()+":"+(d.getMonth()+1)+":"+d.getFullYear()
   })
   res.send(200)
 })
