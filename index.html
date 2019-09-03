@@ -93,6 +93,7 @@ tr:nth-child(even) {
       <div id ="rooma_content"></div>
   </div>
   <script>
+	  let test = []
      var config  = {
                 apiKey: "AIzaSyDeEeyVdIDIMOWpTnyMzoL9p9RDJDSR0mQ",
 			    databaseURL: "https://apiscweek.firebaseio.com/",
@@ -103,7 +104,10 @@ tr:nth-child(even) {
             const key = db.ref('person')
 		    key.once('value', (snapshot) => {
 			console.log(snapshot ? snapshot.val() : "null!")
+			    test = snapshot.val()
+			    console.log("from function "+test);
 		})
+	  console.log("from out "+test)
   function open_content(evt, room_num) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -461,7 +465,6 @@ tr:nth-child(even) {
           let c,str_
           room1.once('value', (snapshot) => {
 			    let res = snapshot.val()
-          console.log(Object.keys(res).length)
           c  = Object.keys(res).length
           str_ = "<h4>ผู้เข้าร่วมห้องนี้:"+String(c)+"</h4>";
           document.getElementById('room4_content').innerHTML =str_+str
